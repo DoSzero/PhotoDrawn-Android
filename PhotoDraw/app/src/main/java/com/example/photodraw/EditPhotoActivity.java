@@ -45,8 +45,8 @@ public class EditPhotoActivity extends AppCompatActivity {
         int[] toolsToHide = {DsPhotoEditorActivity.TOOL_ORIENTATION,DsPhotoEditorActivity.TOOL_CROP };
 
         dsPhotoEditorIntent.putExtra(DsPhotoEditorConstants.DS_PHOTO_EDITOR_TOOLS_TO_HIDE,toolsToHide);
+        //noinspection
         startActivityForResult(dsPhotoEditorIntent,200);
-
     }
 
     @Override

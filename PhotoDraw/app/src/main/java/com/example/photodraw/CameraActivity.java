@@ -2,9 +2,14 @@ package com.example.photodraw;
 
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Matrix;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Rational;
@@ -22,6 +27,8 @@ import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureConfig;
 import androidx.camera.core.Preview;
 import androidx.camera.core.PreviewConfig;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 
 import java.io.File;
@@ -30,6 +37,7 @@ public class CameraActivity extends AppCompatActivity {
 
     TextureView view_finder;
     ImageButton imgCapture;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +76,8 @@ public class CameraActivity extends AppCompatActivity {
                 ViewGroup parent = (ViewGroup) view_finder.getParent();
                 parent.removeView(view_finder);
                 parent.addView(view_finder,0);
-                // refresh camera screen
+
+                // Refresh camera screen
                 view_finder.setSurfaceTexture(output.getSurfaceTexture());
                 updateTransform();
             }
@@ -109,10 +118,8 @@ public class CameraActivity extends AppCompatActivity {
                 });
             }
         });
-
         // bind to lifecycle
         CameraX.bindToLifecycle((LifecycleOwner)this,preview,imgCap);
-
     }
 
     // Update Transform
@@ -140,11 +147,10 @@ public class CameraActivity extends AppCompatActivity {
 
             case Surface.ROTATION_270:rotationDgr = 270;
             break;
+
             default:return;
         }
          mx.postRotate((float)rotationDgr,cx,cy);
          view_finder.setTransform(mx);
     }
-
-
 }
