@@ -1,0 +1,22 @@
+pluginManagement {
+    repositories {
+        repositories {
+            flatDir {
+                dirs 'libs'
+            }
+        }
+
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "PhotoDraw"
+include ':app'
